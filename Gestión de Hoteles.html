@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width= device-width,initial-scale=1" charset="utf-8">
+	<title>Gestión de Hoteles</title>
+	<style type="text/css">
+		#mapa{
+			width: 100%;
+			height: 350px;
+			padding: 0;
+			border: 1px solid #c5c1c1;
+			border-radius: 5px;
+
+
+		}
+		#map{
+			width: 100%;
+			height: 350px;
+			padding: 0;
+			border: 1px solid #c5c1c1;
+			border-radius: 5px;
+
+
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="css/jQuery.mobile-1.4.5.css">
+	<link rel="stylesheet" type="text/css" href="css/jQuery.mobile-1.4.5.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#rgt").click(function(){
+
+			});
+
+			$("#btn1").click(function(){
+			var nombre=$("#nombre").val();
+				var ciudad=$("#ciudad").val();
+				var telefono=$("#telefono").val();
+				var estrellas=$("#estrellas").val();
+                 var mp =$("#maps").val();
+
+      var datos ="Detalles:<br>";
+      datos+="Nombre:    "+ "" +nombre+"<br>";
+      datos+="Ciudad:    "+ "" +ciudad+"<br>";
+      datos+="Teléfono:  "+ "" +telefono+"<br>";
+      datos+="Estrellas: "+ "" +estrellas+"<br>";
+
+
+      $("#btn3").html(nombre);
+      $("#datos1").html(datos);
+
+      $("#nombre").val("");
+      $("#ciudad").val("");
+      $("#telefono").val("");
+      $("#estrellas").val("");
+
+
+			});
+
+var mapa = "null";
+var LatLnInicial = new google.maps.LatLng(-10.765227,-77.194500);
+$("#mapa").html(LatLnInicial);
+
+var opciones ={
+	zoom:2,
+	center:LatLnInicial,
+	mapTypeId:google.maps.MapTypeId.ROADMAP
+
+
+};
+
+mapa = new google.maps.Map(document.getElementById('mapa'),opciones);
+
+var marcador = new google.maps.Marker({
+	position:LatLnInicial,
+	map:mapa,
+	title:"marcador"
+});
+marcadores[0] = marcador;
+
+
+var mapa = "null";
+var LatLnInicial = new google.maps.LatLng(-10.765227,-77.194500);
+$("#map").html(LatLnInicial);
+
+var opciones ={
+	zoom:2,
+	center:LatLnInicial,
+	mapTypeId:google.maps.MapTypeId.ROADMAP
+
+
+};
+
+mapa = new google.maps.Map(document.getElementById('map'),opciones);
+
+var marcador = new google.maps.Marker({
+	position:LatLnInicial,
+	map:mapa,
+	title:"marcador"
+});
+marcadores[0] = marcador;
+
+		});
+
+	</script>
+</head>
+<body>
+	<div data-role="page" id="pg1">
+		<div data-role="header">
+			<h1>GESTIÓN DE HOTELES</h1>
+		</div>
+		<div data-role="content">
+			<a href="#pg1Rh" class="ui-btn" id="rgt">Registrar Hotel</a>
+			<a href="#pg1LH" class="ui-btn" id="lst">Lista de Hoteles</a>
+		</div>
+		<dir data-role="footer">
+			<p align="center">GESTIÓN DE HOTELES</p>
+		</dir>
+	</div>
+
+	<div data-role="page" id="pg1Rh">
+		<div data-role="content">
+			<form>
+				<div>
+					<label for="nombre">Nombre:</label>
+					<input type="text" name="nombre" id="nombre">
+					<div></div>
+					<label for="ubicacion">Ubicaón:</label>
+					<div data-role="content" id="mapa">
+						
+					</div>
+					<label for="ciudad">Ciudad:</label>
+					<input type="text" name="ciudad" id="ciudad">
+					<div></div>
+					<label for="telefono">Teléfono:</label>
+					<input type="text" name="telefono" id="telefono">
+					<div></div>
+					<label for="estrellas">Estrellas:</label>
+					<input type="text" name="estrellas" id="estrellas">
+					<div></div>
+					<a class="ui-btn" id="btn1">Registrar Hotel</a>
+					<a  href="#pg1" class="ui-btn" id="btn2">Volver</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<div data-role="page" id="pg1LH">
+	
+	<div data-role="header">
+		<h1>Lista de Hoteles</h1>
+	</div>
+	<div data-role="content" >
+		<div >
+			<a  href="#pdt" class="ui-btn" id="btn3"></a>
+		</div>
+		<a  href="#pg1" class="ui-btn" id="btn2">Volver</a>
+	</div>
+</div>
+
+<div data-role="page" id="pdt">
+	<div data-role="header"> 
+		<h1> Datos del Hotel </h1>
+	</div>
+	<div data-role="content">
+		<p id="datos1"></p>
+	
+				<div data-role="content" id="map">
+						
+					</div>
+	
+		<a  href="#pg1LH" class="ui-btn" id="btn2">Volver</a>
+
+	</div>
+</div>
+
+</body>
+</html>
